@@ -1,116 +1,75 @@
-# Coloque aqui o nome do tutorial de vocês
+# Conformance Tester for TAGs EPC-GEN2 UHF RFID
 
-- **Alunes:** .../ ... /...
-- **Curso:** Engenharia da Computação
-- **Semestre:** 9
-- **Contato:** corsiferrao@gmail.com
-- **Ano:** 2020
+- **Students:** Alexandre Almeida Edington / Bruno Signorelli Domingues / Lucas Leal Vale / Rafael Dos Santos
+- **Course:** Computer Engineering
+- **Semester:** 8
+- **Teacher:** Rafael Corsi Ferrão
+- **Contato:** alexandreae@al.insper.edu.br / brunosd1@al.insper.edu.br / lucaslv1@al.insper.edu.br / rafaels6@al.insper.edu.br / rafael.corsi@insper.edu.br
+- **Year:** 2021
 
-## Começando
+## About
 
-Para seguir esse tutorial é necessário:
+This project aims to develop an equipment capable of performing a series of tests on RFID TAGs, based on the communication protocol "EPC-GEN2 UHF RFID" [1]. The project simplifies the development of  new TAGs that conform to the defined protocol, being able to assert wether the tag satisfies the requirements of said protocol, and also wether the TAG itself is working as intended.
+
+### Insper
+
+This project is being developed by four computer engineering students at "Insper Instituto de Ensino e Pesquisa" [2], together with "Indago Services Inc." [3]. As part of their completion of course work, the students must communicate with their selected company to identify a problem the company currently has and work together to find and implement a solution to it. For each group of students there is also a teaches that acts as a mentor and aids the group with matters of communication, organization, meetings, and project and report feedbacks.
+
+### Indago Devices Inc.
+
+Indago Devices Inc. is a startup that has its headquarters in the city of Birmingham Alabama, US, and works in the field of development and study of electronics. Despite having few employees, it seeks to innovate in the electronics market, specifically in the development of systems that communicate through RFID. They had already been communicating with Insper in the previous semester, and also another group of students who planned to do a similar project. This semester they decided to request a conformance tester to help develop RFID TAGs. One of the driving points of the project is that currently there is no similar sofware avaliable on open source for the RFID community, so it could impact not only their company, but also the worldwide RFID development community.
+
+## Project Overview
+
+The main objetive of this project is to develop and assemble a conformance tester for RFID TAGs composed of a FPGA [4] where a microcontroller will be implemented and an IP Core for communication with the DUT (device under testing). This device then shall be able to run a series of tests as a READER interacting with a TAG through the EPC-GEN2 protocol, analysing if the TAG works as intended and complies with the requirements of the protocol.
+The tests will be implemented using C, allowing for a large amount of tests to be made that target different aspects of the TAG's process, independently evaluating most of them. Also, it will be possible to customize the tests or develop new ones should the user need to do so.
+This project does not make use of RFID communication, nor does it intend to test wether the TAG is able to communicate through it. Given the compleity of communicating through radio waves, the group and the teacher agreed to not cover those points in this project. Therefore, the device, TAG and computer shall be connected by cables. 
+
+
+## Getting Started
+
+### Tools
 
 - **Hardware:** DE10-Standard e acessórios
 - **Softwares:** Quartus 18.01
 - **Documentos:** [DE10-Standard_User_manual.pdf](https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual)
 
-## Motivação
+### Cloning
 
-Expliquem porque quiseram fazer esse tutorial.
+### Testing / Runninng
 
-----------------------------------------------
+### How to collaborate
 
-!!! info 
-    Essas duas partes são obrigatórias no tutorial:
-    
-    - Nome de vocês
-    - Começando
-    - Motivação
+## Documentation
 
-## Recursos Markdown
+### Specification
 
-Vocês podem usar tudo que já sabem de markdown mais alguns recursos:
+### Hardware
 
-!!! note 
-    Bloco de destaque de texto, pode ser:
-    
-    - note, example, warning, info, tip, danger
-    
-!!! example "Faça assim"
-    É possível editar o título desses blocos
-    
-    !!! warning
-        Isso também é possível de ser feito, mas
-        use com parcimonia.
-    
-??? info 
-    Também da para esconder o texto, usar para coisas
-    muito grandes, ou exemplos de códigos.
-    
-    ```txt
-    ...
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    oi!
-    ```
-    
-- **Esse é um texto em destaque**
-- ==Pode fazer isso também==
+### Firmware
 
-Usar emojis da lista:
+### References
 
-:two_hearts: - https://github.com/caiyongji/emoji-list
+1. EPC UHF Gen2 Air Interface Protocol.
 
+<https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf>
 
-```c
-// da para colocar códigos
- void main (void) {}
-```
+Accessed on: 16/08/2021.
 
-É legal usar abas para coisas desse tipo:
-    
-=== "C"
+2. Insper Instituto de Ensino e Pesquisa.
 
-    ``` c
-    #include <stdio.h>
+<https://www.insper.edu.br/>
 
-    int main(void) {
-      printf("Hello world!\n");
-      return 0;
-    }
-    ```
+Accessed on: 16/08/2021.
 
-=== "C++"
+3. Indago Devices Inc..
 
-    ``` c++
-    #include <iostream>
+<https://indagodevices.com>
 
-    int main(void) {
-      std::cout << "Hello world!" << std::endl;
-      return 0;
-    }
-    ```
+Accessed on: 16/08/2021.
 
-Inserir vídeo:
+4. FPGA Intel.
 
--  Abra o youtube :arrow_right: clique com botão direito no vídeo :arrow_right: copia código de incorporação:
+<https://www.intel.com.br/content/www/br/pt/products/programmable.html>
 
-<iframe width="630" height="450" src="https://www.youtube.com/embed/UIGsSLCoIhM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-!!! tip
-    Eu ajusto o tamanho do vídeo `width`/`height` para não ficar gigante na página
-    
-Imagens você insere como em plain markdown, mas tem a vantagem de poder mudar as dimensões com o marcador `{width=...}`
-    
-![](icon-elementos.png)
-
-![](icon-elementos.png){width=200}
+Accessed on: 23/08/2021

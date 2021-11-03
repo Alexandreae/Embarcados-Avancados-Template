@@ -1,12 +1,12 @@
 
-site_name: 'Eletiva: Embarcados Avançados (SoC e Linux Embarcado)'
+site_name: 'Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID'
 
 theme:
   features:
     - instant
     - navigation.expand
     - tabs: true
-  name: 'material'
+  name: 'readthedocs'
   palette:
       primary: 'white'
       accent: 'pink'
