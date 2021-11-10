@@ -58,6 +58,10 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#project-overview">Project Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#protocol-epc-gen2-uhf-rfid">Protocol EPC-GEN2 UHF RFID</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
         <ul>
@@ -73,15 +77,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#specification">Specification</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#hardware">Hardware</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#firmware">Firmware</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#references">References</a>
+    <li class="toctree-l3"><a class="reference internal" href="#specification">Specification</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
     </ul>
                     </li>
@@ -129,17 +133,23 @@
 <li><strong>Year:</strong> 2021</li>
 </ul>
 <h2 id="about">About<a class="headerlink" href="#about" title="Permanent link">&para;</a></h2>
-<p>This project aims to develop an equipment capable of performing a series of tests on RFID TAGs, based on the communication protocol "EPC-GEN2 UHF RFID" [1]. The project simplifies the development of  new TAGs that conform to the defined protocol, being able to assert wether the tag satisfies the requirements of said protocol, and also wether the TAG itself is working as intended.</p>
+<p>This project aims to develop an equipment capable of performing a series of tests on RFID TAGs, based on the communication protocol "EPC-GEN2 UHF RFID" <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. The project simplifies the development of  new TAGs that conform to the defined protocol, being able to assert wether the tag satisfies the requirements of said protocol, and also wether the TAG itself is working as intended.</p>
 <h3 id="insper">Insper<a class="headerlink" href="#insper" title="Permanent link">&para;</a></h3>
-<p>This project is being developed by four computer engineering students at "Insper Instituto de Ensino e Pesquisa" [2], together with "Indago Services Inc." [3]. As part of their completion of course work, the students must communicate with their selected company to identify a problem the company currently has and work together to find and implement a solution to it. For each group of students there is also a teaches that acts as a mentor and aids the group with matters of communication, organization, meetings, and project and report feedbacks.</p>
+<p>This project is being developed by four computer engineering students at "Insper Instituto de Ensino e Pesquisa" <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, together with "Indago Services Inc." <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. As part of their completion of course work, the students must communicate with their selected company to identify a problem the company currently has and work together to find and implement a solution to it. For each group of students there is also a teaches that acts as a mentor and aids the group with matters of communication, organization, meetings, and project and report feedbacks.</p>
 <h3 id="indago-devices-inc">Indago Devices Inc.<a class="headerlink" href="#indago-devices-inc" title="Permanent link">&para;</a></h3>
 <p>Indago Devices Inc. is a startup that has its headquarters in the city of Birmingham Alabama, US, and works in the field of development and study of electronics. Despite having few employees, it seeks to innovate in the electronics market, specifically in the development of systems that communicate through RFID. They had already been communicating with Insper in the previous semester, and also another group of students who planned to do a similar project. This semester they decided to request a conformance tester to help develop RFID TAGs. One of the driving points of the project is that currently there is no similar sofware avaliable on open source for the RFID community, so it could impact not only their company, but also the worldwide RFID development community.</p>
 <h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
-<p>The main objetive of this project is to develop and assemble a conformance tester for RFID TAGs composed of a FPGA [4] where a microcontroller will be implemented and an IP Core for communication with the DUT (device under testing). This device then shall be able to run a series of tests as a READER interacting with a TAG through the EPC-GEN2 protocol, analysing if the TAG works as intended and complies with the requirements of the protocol.
-The tests will be implemented using C, allowing for a large amount of tests to be made that target different aspects of the TAG's process, independently evaluating most of them. Also, it will be possible to customize the tests or develop new ones should the user need to do so.
-This project does not make use of RFID communication, nor does it intend to test wether the TAG is able to communicate through it. Given the compleity of communicating through radio waves, the group and the teacher agreed to not cover those points in this project. Therefore, the device, TAG and computer shall be connected by cables. </p>
+<p>The main objetive of this project is to develop and assemble a conformance tester for RFID TAGs where a microcontroller will be implemented and an IP Core for communication with the DUT (device under testing). This device then shall be able to run a series of tests as a READER interacting with a TAG through the EPC-GEN2 protocol, analysing if the TAG works as intended and complies with the requirements of the protocol.</p>
+<p>The tests will be implemented using C, allowing for a large amount of tests to be made that target different aspects of the TAG's process, independently evaluating most of them. Also, it will be possible to customize the tests or develop new ones should the user need to do so.</p>
+<p>This project does not make use of RFID communication, nor does it intend to test wether the TAG is able to communicate through it. Given the compleity of communicating through radio waves, the group and the teacher agreed to not cover those points in this project. Therefore, the device, TAG and computer shall be connected by cables. </p>
+<h3 id="protocol-epc-gen2-uhf-rfid">Protocol EPC-GEN2 UHF RFID<a class="headerlink" href="#protocol-epc-gen2-uhf-rfid" title="Permanent link">&para;</a></h3>
+<p>Documentation avaliable on: <a href="https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf">https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf</a></p>
+<p>The main purpose of this protocol is to allow two pieces of hardware, obtained independently, but conforming to the protocol, to communicate flawlessly. To achieve this, it specifies how physical and logial interactions should take place, as well as the possible commands between READER and TAG.</p>
+<p>There are rules defined for both READER and TAG, however, due to the nature of this project, we will focus only on the TAG, as it is the focus of the tests devised.</p>
+<p>To claim compliance with the protocol, a TAG must meet all required specifications, having implementd all mandatory commands, be able to modulate a response signal after receiving a command from a READER, and comply with all government radio regulations. Optionally, it is allowed to implement any number of non-mandatory commands defined in this protocol and any other private commands that do not conflict with any of the mandatory ones. Finally, the TAG must not require a READER to be able to process any non-mandatory comand for this protocol, and is not allowed to modulate a response signal unless it has been commanded to do so by a READER using the commands present in this protocol.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <h3 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
+<p>To be able to use the Conformance Tester for TAGs EPC-GEN2 UHF RFID, you'll need the following tools:</p>
 <ul>
 <li><strong>Hardware:</strong> DE10-Standard e acessórios</li>
 <li><strong>Softwares:</strong> Quartus 18.01</li>
@@ -149,30 +159,44 @@ This project does not make use of RFID communication, nor does it intend to test
 <h3 id="testing-runninng">Testing / Runninng<a class="headerlink" href="#testing-runninng" title="Permanent link">&para;</a></h3>
 <h3 id="how-to-collaborate">How to collaborate<a class="headerlink" href="#how-to-collaborate" title="Permanent link">&para;</a></h3>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<h3 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h3>
+<p>This Conformance Tester for TAGs EPC-GEN2 UHF RFID is an open source project. We will specify below all the hardware that we used as the foundation for this project, specifications on how it all comes together, as well as a link to our firmware repository on GitHub.</p>
 <h3 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h3>
+<p>For this project, the chosen solution for implementing the conformance tester was to develop a dedicated hardware in FPGA <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>. The chosen product was the DE10-Standard produced by Terasic as well as a PFGA Cyclone V from Intel. Our teacher had ample experience working with this specific model, and it also perfectly fits the requirements need to implement the chosen solution. This is because, through a tool called "platform designer", it is able to edit its configuration on demand, allowing great flexibility when needed.</p>
+<p>The proposed solution makes use of Intel's solution development ecosystem, providing flexibility in the use of a soft processor, enabling the integration of peripherals called IP Cores to its architecture, as well as allowing the creation of new instructions implmented in the hardware. For more information on these modifications, see the document "Nios II Custom Instruction User Guide" <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.</p>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
-<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<p>Below are all the </p>
+<h3 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h3>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
 <ol>
-<li>EPC UHF Gen2 Air Interface Protocol.</li>
+<li id="fn:1">
+<p>EPC UHF Gen2 Air Interface Protocol.
+<a href="https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf">https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf</a>
+Accessed on: 16/08/2021.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Insper Instituto de Ensino e Pesquisa.
+<a href="https://www.insper.edu.br/">https://www.insper.edu.br/</a>
+Accessed on: 16/08/2021.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Indago Devices Inc..
+<a href="https://indagodevices.com">https://indagodevices.com</a>
+Accessed on: 16/08/2021.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>FPGA Intel.
+<a href="https://www.intel.com.br/content/www/br/pt/products/programmable.html">https://www.intel.com.br/content/www/br/pt/products/programmable.html</a>
+Accessed on: 23/08/2021&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Nios II Custom Instruction User Guide.
+<a href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf">https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf</a>
+Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
 </ol>
-<p><a href="https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf">https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf</a></p>
-<p>Accessed on: 16/08/2021.</p>
-<ol>
-<li>Insper Instituto de Ensino e Pesquisa.</li>
-</ol>
-<p><a href="https://www.insper.edu.br/">https://www.insper.edu.br/</a></p>
-<p>Accessed on: 16/08/2021.</p>
-<ol>
-<li>Indago Devices Inc..</li>
-</ol>
-<p><a href="https://indagodevices.com">https://indagodevices.com</a></p>
-<p>Accessed on: 16/08/2021.</p>
-<ol>
-<li>FPGA Intel.</li>
-</ol>
-<p><a href="https://www.intel.com.br/content/www/br/pt/products/programmable.html">https://www.intel.com.br/content/www/br/pt/products/programmable.html</a></p>
-<p>Accessed on: 23/08/2021</p>
+</div>
               
             </div>
           </div>
@@ -220,5 +244,5 @@ This project does not make use of RFID communication, nor does it intend to test
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2021-11-03 14:54:23.212345+00:00
+Build Date UTC : 2021-11-10 23:13:57.165750+00:00
 -->
