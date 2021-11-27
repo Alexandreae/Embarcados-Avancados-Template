@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Hardware - Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="../extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hardware";
+    var mkdocs_page_input_path = "hardware.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#file-hierarchy">File Hierarchy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#packages-and-commands">Packages and commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reader">READER</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ip-rfid">IP-Rfid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sender">SENDER</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#receiver">RECEIVER</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../software/">Software</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Hardware</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h1>
+<p>For this project, the chosen solution for implementing the conformance tester was to develop a dedicated hardware in FPGA <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">1</a></sup>. The chosen product was the DE10-Standard produced by Terasic as well as a PFGA Cyclone V from Intel. Our teacher had ample experience working with this specific model, and it also perfectly fits the requirements need to implement the chosen solution. This is because, through a tool called "platform designer", it can edit its configuration on demand, allowing great flexibility when needed.</p>
+<p>The proposed solution makes use of Intel's solution development ecosystem, providing flexibility in the use of a soft processor, enabling the integration of peripherals called IP-Rfid to its architecture, as well as allowing the creation of new instructions implemented in the hardware. For more information on these modifications, see the document "NIOS II Custom Instruction User Guide" <sup id="fnref:11"><a class="footnote-ref" href="#fn:11">2</a></sup>.</p>
+<h2 id="file-hierarchy">File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Permanent link">&para;</a></h2>
+<p>All necessary VHDL hardware description files are located in the project’s fpga/rtl/ folder. The top entity of the entire processor including all the required configuration generics is rfid.vhd.</p>
+<div class="codehilite"><pre><span></span><code>rfid.vhd                   - Conformance tester top entity
+│
+├sender.vhd                - Sender component top entity
+│├FIFO_fm0.vhd             - Encoder-specific FIFO
+││├FM0_encoder.vhd         - Encoder-FM0-specific FIFO
+││└fifo_32_32.vhd          - General use FIFO
+│├sender_controller.vhd    - Controls the flow of packages to the TAG
+│└signal_generator.vhd     - Generates preamble or frame-sync signal
+│
+└receiver.vhd              - Receiver component top entity
+ ├FM0_decoder.vhd          - Decoder-FM0-specific FIFO
+ ├fifo_32_32.vhd           - General use FIFO
+ └package_constructor.vhd  - Stores bits into packages before storing in the FIFO
+</code></pre></div>
+
+<h2 id="packages-and-commands">Packages and commands<a class="headerlink" href="#packages-and-commands" title="Permanent link">&para;</a></h2>
+<p>Our project uses the mandatory commands specified in the EPC-GEN2 documentation. However, those commands have varying sizes and even the same command could vary its size based on the data it sends. To work with this fluctuating command bit size, the group decided to break commands into 32-bit packages, where the 26 more significant bits are the actual data of the packet, and the 6 less significant are the mask, indicating how many of the 26 are in use.</p>
+<p><img alt="" src="../package.png" /></p>
+<p>This way, we have three possible situations given the command sizes:</p>
+<ul>
+<li>The command is larger than one package: if the command has more than 26 bits, we are able to break it into multiple packages, communicated in order through our components (more significant -&gt; less significant);</li>
+<li>The command is the same size as the package: the easiest case, where we just treat the package as the full command;</li>
+<li>The command is shorter than one package: in this case we just fill the package up to the number of bits the command has, and then use the mask to communicate how many of the data bits in the package are useful, ignoring the ones not needed to the command;</li>
+</ul>
+<p>For example, if a command has 40 bits, we will break it into two packets. The first one uses the 26 data bits, and the mask <code>011010</code> (26) to indicate all the data bits are in use. Then, the second package would only use 14 of the 26 data bits available to reach the 40 bits the command has, and so the mask would be <code>001110</code> (14) to indicate that only 14 bits should be analyzed.</p>
+<p>To communicate between the components that the command is over, we send a <code>void package 0b00000000000000000000000000000000</code> after the last package of the command. This occurs in two times in out product: first, when sending the command to the TAG, the NIOS II sends a void package to the Sender to indicate the command is over. Second, when receiving the response from the TAG, the Recevier sends a void package to the NIOS II to indicate that the command received is over.</p>
+<h2 id="reader">READER<a class="headerlink" href="#reader" title="Permanent link">&para;</a></h2>
+<p>The READER, as shown in the diagram below, is the toplevel of our project, which contains the three main components. Here we will give an overview of each component, and a in depth analysis is present in the sections below.</p>
+<p><img alt="" src="../reader.png" /></p>
+<p>The first one is the NIOS II soft processor, where we programmed the tests that will be run on the TAG. Therefore, its responsible for generating the commands for communicating with the TAG, as well as interpreting the responses it receives, to assert whether the TAG passes or fails each test.</p>
+<p>The second component is the IP-Rfid, developed in VHDL, and is responsible for encoding and sending messages to the TAG, as well as decoding any responses and passing the through to the processor. Those two tasks have been separated into the sender and the receiver respectively.</p>
+<p>The last one is the Avalon Interface, is the connection between the NIOS II and the IP-Rfid, where the commands, generated in the programming language C, will be passed on to the VHDL sender, and responses will take the opposite path, going from the receiver to the processor.</p>
+<h3 id="ip-rfid">IP-Rfid<a class="headerlink" href="#ip-rfid" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/rfid.vhd">/main/fpga/RTL/rfid.vhd</a></p>
+<p>The developed peripheral can be split into two components, visualized in the diagram below. Those are the SENDER, in red, responsible for receiving the data from the NIOS II, encoding and forwarding them to the TAG; and the RECEIVER, in blue, responsible for receiving the data from the TAG, decoding and forwarding them to the NIOS II.</p>
+<p><img alt="" src="../ip.png" /></p>
+<h3 id="sender"><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/sender.vhd">SENDER</a><a class="headerlink" href="#sender" title="Permanent link">&para;</a></h3>
+<p>This component is responsible for encoding the commands generated by the processor, and send them to the TAG, respecting the rules of the EPC-GEN2 protocol, including the TARI, preamble and EOP. Its components are detailed below:</p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/fifo_32_32.vhd">FIFO</a></strong></p>
+<p>The first component of the SENDER is the FIFO, a storage system that receives the assembled commands from the NIOS II and waits for the encoder to send the <code>read request</code> flag, signaling for the FIFO to send the oldest package. It is possible that the command to be sent to the TAG is composed of more than one package, so the FIFO serves as a storage system for packages already received from the processor until it signals that the entire command is ready for encoding.</p>
+<p>For this project, we opted to use the FIFO produced by Intel, which was obtained through the Quartus automatic generator, the main software used by the group for programming in VHDL language. It is possible to include several customizations before generating the code, and thus, the group defined that the FIFO would have, <code>reset</code>, <code>write request</code>, <code>read request</code>, <code>FIFO full</code> and <code>FIFO empty</code> flags to facilitate communication with other components of the project. Furthermore, it has a 32-bit word and a depth of 248 words.</p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/fifo_fm0.vhd">FIFO_FM0</a></strong></p>
+<p>FIFO-FM0 is a component created to separate the data encoding component from the signal-generator and the sender-controller, mapping the inputs: <code>data</code> to be encoded, <code>write request</code> for the FIFO, <code>enable</code> and <code>tari</code> to the other components, allowing for individual control of each component. Since the encoder does not need to obey the tari, it can operate independently, and much faster than the sender, since each bit can only be sent after the tari interval.</p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/FM0_encoder.vhd">Encoder</a></strong></p>
+<p>The encoder is the main component of the sender, being responsible for encoding the packages received from the FIFO with FM0 band, as specified in the EPC-GEN2, as well as sending the encoded data to the TAG. for this purpose, a refined control of the time intervals is necessary to obey the TARI, also defined in the protocol as being between 6.25μs and 25μs.</p>
+<p>This component has two state machines that work simultaneously, one responsible for communicating with the FIFO and sending it to the TAG, while the other encodes the received data. The diagram below demonstrates the first state machine:</p>
+<ul>
+<li><code>Wait</code> is the encoder's default, the state it remains in while it doesn't receive any new packages to encode;</li>
+<li><code>Start Send</code> is the most complex state, where another state machine is present inside it, which is responsible for encoding the packages. Furthermore, it also expects to receive the correct TARI to send data to the TAG;</li>
+<li><code>Wait Send</code> is a temporary state for when the data has been fully encoded, but due to the TARI limitations, has not been fully sent to the TAG yet. Once it finishes sending the data, it goes to the next state, <code>Request Data</code>;</li>
+<li><code>Request Data</code> happens after the data has been sent, and signals the FIFO to send more data. This state is very short, as its only duty is to send a flag to the FIFO, and immediately change to the <code>Wait Request</code> state;</li>
+<li><code>Wait Request</code> can happen in two situations. First, if the Encoder is waiting for the next package from the FIFO, going back to the <code>Start Send</code> state once it is received. Second, it can happen once the FIFO sends the <code>FIFO_empty</code> signal to the Encoder. In this case, it will proceed to the <code>Wait 1.6 TARI</code> state;</li>
+<li><code>Wait 1.6 TARI</code> is the formal completion of the command sent to the TAG, where a <code>dummy 1</code> bit is sent, which will remain active for 1.6 TARI and then stop the communication;</li>
+</ul>
+<p><img alt="" src="../encoder.png" /></p>
+<p>The next image demonstrates the other state machine present in the component, responsible for the encoding of the data. It was defined that it would always start in state <code>S3</code>. FM0 encoding transforms each bit of information into two bits, in such a way so that a <code>1</code> becomes two bits of the same value (either <code>1 1</code> or <code>0 0</code>), and a <code>0</code> becomes two bits of different values (either <code>1 0</code> or <code>0 1</code>), where the signal always alternates when encoding a new bit. The change of state occurs after each bit has been sent and is defined by the value of the next bit.</p>
+<ul>
+<li><code>S1</code> encodes <code>1</code> into <code>1 1</code>;</li>
+<li><code>S2</code> encodes <code>0</code> into <code>1 0</code>;</li>
+<li><code>S3</code> encodes <code>0</code> into <code>0 1</code>;</li>
+<li><code>S4</code> encodes <code>1</code> into <code>0 0</code>;</li>
+</ul>
+<p><img alt="" src="../FM0_1.png" width="50%" /></p>
+<p><img alt="" src="../FM0_2.png" width="60%" /></p>
+<p>The previously defined <code>dummy 1</code> acts as the <code>EOP</code> of a command passed to the TAG, however it also needs to be encoded, and is always followed by a <code>0</code> bit. This is shown in the image below.</p>
+<p><img alt="" src="../FM0_3.png" width="60%" /></p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/signal_generator.vhd">Signal Generator</a></strong></p>
+<p>This component encompasses both the Preamble and Frame-sync functions, and receives flags to determine which one, if any, will be activated.</p>
+<p>The Frame-sync is responsible for defining and regulating the interval at which information is sent to the TAG, and sharing this interval to all other SENDER components, so that they can communicate within the correct time intervals. This period, named TARI, must be within the range defined in the protocol, and have a variation of less than 1% between each pulse.</p>
+<p><img alt="" src="../Framesync.png" width="70%" /></p>
+<p>The Preamble is responsible for the first wave of information sent to the TAG for each new command, and it defines which TARI will be used throughout the next command. This component needs to be activated for every command that is sent to the TAG, except when more than one command is sent in sequence, without a response in between. In this case, the preamble informed will be valid for all subsequent commands, until a response is requested.</p>
+<p><img alt="" src="../Preamble.png" /></p>
+<h3 id="receiver"><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/receiver.vhd">RECEIVER</a><a class="headerlink" href="#receiver" title="Permanent link">&para;</a></h3>
+<p>The RECEIVER is responsible for receiving the responses from the TAG, decode them, and notify the NIOS II processor that there was a response, as well as store each package of the response until the processor sends the <code>read request</code> flags to analyze them. In order for the received data to be interpreted, it is necessary that the information is decoded and grouped into packages, because it is possible the response is too large for the processor to receive all at once. The group decided to split the RECEIVER into three smaller components, shown and described below:</p>
+<p><img alt="" src="../receiver.png" /></p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/FM0_decoder.vhd">Decoder</a></strong></p>
+<p>Since the TAG also communicates back to the READER using FM0 encoding, a decoder component is needed to decode the received data, allowing it to be interpreted by the processor. This component was built in a similar way to the sender, though it is a simpler process, and only one state machine was needed. The diagram below demonstrates the state machine programmed for this purpose:</p>
+<ul>
+<li><code>Wait</code> is the decoder's default, the state it remains in while it doesn't receive any new data to decode;</li>
+<li><code>Start Counter</code> starts a time counter as soon as the decoder receives new data, in order to determine if the bit will change after 0.5 or 1.0 TARI, then passing to the next state. It is also possible for the bit to remain unchanged for more than 1.0 TARI, in which case it will go to the <code>Pass 1.01 TARI</code> state;</li>
+<li><code>Stop Counter</code> sends <code>1</code> to the package constructor if the input signal has not changed, and <code>0</code> otherwise;</li>
+<li><code>Continue Counter</code> is necessary because the stop counter always stop at 0.5 TARI, so it is activated if no bit change occurs;</li>
+<li><code>Pass 1.01 TARI</code> is activated when the TAG sends the <code>dummy 1</code>, which has a duration of 1.6 TARI, and checks if the times are in accordance with the protocol;</li>
+<li><code>Counter CS</code> stops the counter and resets the decoder to its default state;</li>
+<li><code>ERROR</code> is a state that can be activated by almost any other state, as they all check certain characteristics of that TAG that must comply with the protocol. If something is irregular, this status will be activated and will send an error message explaining what caused this to happen;</li>
+</ul>
+<p><img alt="" src="../decoder.png" /></p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/RTL/package_constructor.vhd">Package Constructor</a></strong></p>
+<p>This component is responsible for assembling the decoded bits into packages and storing them in the FIFO. It gathers the received bits until reaching the limit defined in the code, and then sending to the FIFO. If, however, the package constructor receives the <code>EOP</code> signal before completing the package, it will concatenate a mask with the current package to inform how many bits were filled. Furthermore, it will also extend the <code>EOP</code> flag to the FIFO and the processor, so that they know the RECEIVER has finished capturing and decoding the whole response command.</p>
+<ul>
+<li><code>Wait</code> is the package constructor's default, the state it remains in while it doesn't receive any new data to store;</li>
+<li><code>New Bit</code> happens when the decoder sends a decoded bit to the package constructor, which stores it in the current package being constructed;</li>
+<li><code>Inc Mask</code> increases the package mask by 1 representing the new bit received;</li>
+<li><code>Max Mask</code> checks whether the mask, and therefore the package, is full, preparing to send the package if it is;</li>
+<li><code>Send Package</code> sends the current package to the FIFO, an intermediary step before going to the NIOS II processor;</li>
+<li><code>Check EOP</code> checks if the EOP flag is high, and changes state based on the current packet. If it is empty, goes to the <code>Send void</code> state, if not goes to the <code>Send Package</code>;</li>
+<li><code>Clear</code> clears the current package before starting a new one;</li>
+<li><code>Send Void</code> send to the FIFO an empty package - <code>0b00000000000000000000000000000000</code></li>
+</ul>
+<p><img alt="" src="../Package_constructor.png" /></p>
+<p><strong><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/fifo_32_32.vhd">FIFO</a></strong></p>
+<p>The FIFO in the RECEIVER is the same as the one in the SENDER and serves similar purpose, however with inverted direction. This FIFO stores packages leaving the package constructor until it receives the <code>EOP</code> flag, which also signals the NIOS II that the command is ready to be requested. After this, the FIFO sends the packages to the processor one at a time, each time it receives a <code>read request</code> flag.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:10">
+<p>FPGA Intel.
+<a href="https://www.intel.com.br/content/www/br/pt/products/programmable.html">https://www.intel.com.br/content/www/br/pt/products/programmable.html</a>
+Accessed on: 23/08/2021&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Nios II Custom Instruction User Guide.
+<a href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf">https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf</a>
+Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../firmware/" class="btn btn-neutral float-right" title="Firmware">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../getting_started/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../getting_started/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../firmware/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

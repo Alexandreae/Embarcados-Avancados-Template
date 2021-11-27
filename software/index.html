@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Software - Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="../extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Software";
+    var mkdocs_page_input_path = "software.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../hardware/">Hardware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Software</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#nios-ii">NIOS II</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#file-hierarchy">File Hierarchy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#starting-variables">Starting Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Insper: Open Source Conformance Tester for TAGs EPC-GEN2 UHF RFID</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Software</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="software">Software<a class="headerlink" href="#software" title="Permanent link">&para;</a></h1>
+<p>Below is an axplanation of the software code of our project, the NIOS II soft processor.</p>
+<h2 id="nios-ii"><a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester/blob/main/fpga/software/rfid_test/hello_world.c">NIOS II</a><a class="headerlink" href="#nios-ii" title="Permanent link">&para;</a></h2>
+<p>The NIOS II is a soft processor, which means that, unlike discrete processors, such as those in conventional computers, its peripherals and addressing can be reconfigured on demand. This enables the development of a specialized and efficient processor, reducing the costs and time of producing a prototype since it is dynamically generated inside the FPGA without the need to produce a new processor.</p>
+<p>Communication between the NIOS II and the peripheral IP-Rfid is done via the Avalon data bus, which is a memory-mapped peripheral. The addressing works as in a common memory, having write, read, and address signals, as well as the input and output vectors of this bus.</p>
+<p>The NIOS II function is to write the commands and tests in the register banks present in the IP peripheral, so that it can communicate with the TAG. This processor can be viewed as the conductor and all other components as the orchestra, as it is responsible for enabling, configuring, reading, and writing data from the Avalon memory to the IP-Rfid.</p>
+<p>Throughout this project, the group breaks commands into packages for ease of use. Details on how this is done can be found <a href="../hardware/">here</a></p>
+<h3 id="file-hierarchy">File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Permanent link">&para;</a></h3>
+<p>All necessary C and header filesare located in the project’s fpga/software/rfid_test folder. The top entity of the entire processor including all the required configuration generics is main.c and all other relevant files are inside the helpers folder.</p>
+<div class="codehilite"><pre><span></span><code>main.c                   - NIOS II soft processor top entity
+│
+├crc.c                   - Cyclic Redundance Check file
+│
+└/helpers                - Holds all complimentary C files
+    │
+    ├/functions             - Holds all functions that dictate how the components act
+    ││
+    │├sender.c              - Holds all functions that dictate how the Sender acts
+    │├receiver.c            - Holds all functions that dictate how the Receiver acts
+    │└rfid.c                - Holds all functions about tari, commands and packages
+    │
+    └/commands              - Holds all the EPC-GEN2 mandatory commands
+    │
+    ├ack.c                 - Mandatory command ack
+    ├kill.c                - Mandatory command kill
+    ├lock.c                - Mandatory command lock
+    ├nak.c                 - Mandatory command nak
+    ├query.c               - Mandatory command query
+    ├query_adjust.c        - Mandatory command query_adjust
+    ├query_rep.c           - Mandatory command query_rep
+    ├read.c                - Mandatory command read
+    ├req_rn.c              - Mandatory command req_rn
+    ├rn16.c                - Mandatory command rn16
+    ├rn_crc.c              - Mandatory command rn_crc
+    ├select.c              - Mandatory command select
+    ├write.c               - Mandatory command write
+</code></pre></div>
+
+<p>Additional information on the EPC-GEN2 protocol and mandatory commands (as well as the other command types) can be found here <a href="..">here</a></p>
+<h3 id="starting-variables">Starting Variables<a class="headerlink" href="#starting-variables" title="Permanent link">&para;</a></h3>
+<p><strong>Register Status</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">//READ ONLY</span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_IS_FIFO_FULL</span><span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_EMPTY_RECEIVER</span><span class="w">  </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">13</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>BASE_IS_FIFO_FULL</code>   - Indicates the necessary shift for the is_FIFO_full flag</li>
+<li><code>MASK_EMPTY_RECEIVER</code> - Indicates the necessary shift for the is_receiver_empty flag</li>
+</ul>
+<p><strong>Register Settings</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">//READ/WRITE</span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_SET</span><span class="w">         </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">        </span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_RST</span><span class="w">             </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_EN</span><span class="w">              </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_RST_RECEIVER</span><span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_EN_RECEIVER</span><span class="w">     </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_CLR_FIFO</span><span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_LOOPBACK</span><span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_CLR_FINISHED</span><span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">SENDER_HAS_GEN</span><span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">SENDER_ENABLE_CTRL</span><span class="w">   </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">SENDER_IS_PREAMBLE</span><span class="w">   </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_READ_REQ</span><span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">MASK_FINISH_SEND</span><span class="w">     </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>BASE_REG_SET</code>       - Memory address for the REGISTER_SETTINGS</li>
+<li><code>MASK_RST</code>           - Indicates the necessary shift for the sender_reset flag</li>
+<li><code>MASK_EN</code>            - Indicates the necessary shift for the sender_enable flag</li>
+<li><code>MASK_RST_RECEIVER</code>  - Indicates the necessary shift for the receiver_reset flag</li>
+<li><code>MASK_EN_RECEIVER</code>   - Indicates the necessary shift for the receiver_enable flag</li>
+<li><code>MASK_CLR_FIFO</code>      - Indicates the necessary shift for the sender_clear_FIFO flag</li>
+<li><code>MASK_LOOPBACK</code>      - Indicates the necessary shift for the RFID_loopback flag</li>
+<li><code>MASK_CLR_FINISHED</code>  - Indicates the necessary shift for the sender_clear_finished flag</li>
+<li><code>SENDER_HAS_GEN</code>     - Indicates the necessary shift for the sender_has_generator flag</li>
+<li><code>SENDER_ENABLE_CTRL</code> - Indicates the necessary shift for the sender_enable_controller flag</li>
+<li><code>SENDER_IS_PREAMBLE</code> - Indicates the necessary shift for the sender_is_preamble flag</li>
+<li><code>MASK_READ_REQ</code>      - Indicates the necessary shift for the receiver_read_request flag</li>
+<li><code>MASK_FINISH_SEND</code>   - Indicates the necessary shift for the mask_finish_send flag</li>
+</ul>
+<p><strong>RFID- Addresses</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TARI</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">      </span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_FIFO</span><span class="w">       </span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TARI_101</span><span class="w">   </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TARI_099</span><span class="w">   </span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TARI_1616</span><span class="w">  </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TARI_1584</span><span class="w">  </span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_PW</span><span class="w">         </span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_DELIMITER</span><span class="w">  </span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_RTCAL</span><span class="w">      </span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_TRCAL</span><span class="w">      </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_REG_STATUS</span><span class="w">     </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_RECEIVER_DATA</span><span class="w">  </span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_SENDER_USEDW</span><span class="w">   </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_RECEIVER_USEDW</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BASE_ID</span><span class="w">             </span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>BASE_REG_TARI</code>       - R/W - address of the tari </li>
+<li><code>BASE_REG_FIFO</code>       - R/W - address of FIFO R/W</li>
+<li><code>BASE_REG_TARI_101</code>   - W   - address of tari_101</li>
+<li><code>BASE_REG_TARI_099</code>   - W   - address of tari_099</li>
+<li><code>BASE_REG_TARI_1616</code>  - W   - address of tari_1616</li>
+<li><code>BASE_REG_TARI_1584</code>  - W   - address of tari_1584</li>
+<li><code>BASE_REG_PW</code>         - W   - address of pw</li>
+<li><code>BASE_REG_DELIMITER</code>  - W   - address of delimiter</li>
+<li><code>BASE_REG_RTCAL</code>      - W   - address of receiver transmitter callibration</li>
+<li><code>BASE_REG_TRCAL</code>      - W   - address of transmitter receiver callibrtation</li>
+<li><code>BASE_REG_STATUS</code>     - R   - address of REGISTER_STATUS</li>
+<li><code>BASE_RECEIVER_DATA</code>  - R   - address of receiver data</li>
+<li><code>BASE_SENDER_USEDW</code>   - R   - address of sender_FIFO_actual_size</li>
+<li><code>BASE_RECEIVER_USEDW</code> - R   - address of receiver_FIFO_actual_size</li>
+<li><code>BASE_ID</code>             - R   - address of IP_rfid</li>
+</ul>
+<p><strong>RFID- Command specifications</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// package defines</span>
+<span class="n">define</span><span class="w"> </span><span class="n">data_mask_size</span><span class="w">      </span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">data_package_size</span><span class="w">   </span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">eop</span><span class="w">                 </span><span class="p">(</span><span class="mb">0b00000000000000000000000000000000</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">bits6</span><span class="w">               </span><span class="p">(</span><span class="mb">0b111111</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">bits26</span><span class="w">              </span><span class="p">(</span><span class="mb">0b11111111111111111111111111</span><span class="p">)</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">bits32</span><span class="w">              </span><span class="p">(</span><span class="mb">0b11111111111111111111111111111111</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>data_mask_size</code>    - defines the number of bits reserved for the mask</li>
+<li><code>data_package_size</code> - defines the number of bits reserved for the data</li>
+<li><code>eop</code>               - defines the END_OF_PACKAGE format</li>
+<li><code>bits6</code>             - mask for full package mask</li>
+<li><code>bits26</code>            - mask for full package data</li>
+<li><code>bits32</code>            - mask for full package</li>
+</ul>
+<p><strong>RFID- Start of Communication Values</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">tari</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1f4</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">tari_101</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1f9</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">tari_099</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1EF</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">tari_1616</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x328</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">tari_1584</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x318</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">pw</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mh">0xFA</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x271</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">RTcal</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mh">0x546</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">TRcal</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mh">0x546</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>tari</code>        - tari time parameter</li>
+<li><code>tari_101</code>    - 1% above tari limit</li>
+<li><code>tari_099</code>    - 1% below tari limit</li>
+<li><code>tari_1616</code>   - 1% above 1.6 tari limit</li>
+<li><code>tari_1584</code>   - 1% below 1.6 tari limit</li>
+<li><code>pw</code>          - pw parameter</li>
+<li><code>delimiter</code>   - Delimiter parameter</li>
+<li><code>RTcal</code>       - Receiver transmitter callibration parameter</li>
+<li><code>TRcal</code>       - Transmitter receiver callibration parameter</li>
+</ul>
+<h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
+<p><strong>RFID functions</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">rfid_set_loopback</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">rfid_set_tari</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">tari_value</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">rfid_set_tari_boundaries</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">tari_101</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tari_099</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tari_1616</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tari_1584</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pw</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">delimiter</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RTcal</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">TRcal</span><span class="p">)</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">rfid_create_mask_from_value</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">rfid_check_command</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">packages</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quant_packages</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">command_size</span><span class="p">)</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">rfid_get_ip_id</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>void rfid_set_loopback</code> - Connects Tx on Rx creating a loop, used for testing the reader</li>
+<li><code>void rfid_set_tari</code> - Sets the tari value on the IP rfid</li>
+<li><code>void rfid_set_tari_boundaries</code> -  Sets the tari boundaries on the IP rfid</li>
+<li><code>int rfid_create_mask_from_value</code> - Generates the package mask based on the package received</li>
+<li><code>int rfid_check_command</code> - Checks if the received command is valid and present on the EPC-GEN2 protocol</li>
+<li><code>int rfid_get_ip_id</code> - Checks the currend address for the IP_rfid</li>
+</ul>
+<p><strong>SENDER functions</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w">  </span><span class="n">sender_check_usedw</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w">  </span><span class="n">sender_check_fifo_full</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_enable</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_send_package</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">package</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_send_end_of_package</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_start_ctrl</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_write_clr_finished_sending</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">sender_read_finished_send</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">sender_get_command_ints_size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size_of_command</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_add_mask</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">command_vector_masked</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">result_data</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">result_data_size</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_has_gen</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">usesPreorFrameSync</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_is_preamble</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sender_send_command</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">*</span><span class="n">command_ptr</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>sender_check_usedw</code> - Access the address that indicates how many packages are in the sender FIFO</li>
+<li><code>sender_check_fifo_full</code> - Access REG_STATUS to verify wether the FIFO is full or not</li>
+<li><code>sender_enable</code> - Access REG_SET to activate the peripheral Sender on the IP rfid</li>
+<li><code>sender_send_package</code> - Writes the package on the FIFO address</li>
+<li><code>sender_send_end_of_package</code> - Writes the EOP on the FIFO address</li>
+<li><code>sender_start_ctrl</code> - Access REG_SET to activate the sender controller with a pulse</li>
+<li><code>sender_write_clr_finished_sending</code> - Access REG_SET to clear the finished_sending flag with a pulse</li>
+<li><code>sender_read_finished_send</code> - Access RES_STATUS to check wether the package has been sent or not</li>
+<li><code>sender_get_command_ints_size</code> - Check the size of the command and calculates the size of each smaller package</li>
+<li><code>sender_add_mask</code> - Divides the command into smaller packages if needed and generates a mask based on the current package data size</li>
+<li><code>sender_has_gen</code> - Access REG_SET to define wether the generator should be activated</li>
+<li><code>sender_is_preamble</code> - If the generator is activated, defines if the generator is a preamble or a framesync</li>
+<li><code>sender_send_command</code> - Runs the all the functions related to the command, going through all the steps necessary to split in packages, add the masks, send and clear the flag registers in the end</li>
+</ul>
+<p><strong>RECEIVER functions</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">receiver_enable</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">receiver_check_usedw</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">receiver_request_package</span><span class="p">()</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">receiver_empty</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">receiver_rdreq</span><span class="p">()</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">receiver_get_package</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">command_vector</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quant_packages</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">command_size</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">quant_packages_received</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>receiver_enable</code> - Access REG_SET to activate the peripheral Receiver on the IP rfid</li>
+<li><code>receiver_check_usedw</code> - Access the address that indicates how many packages are in the receiver FIFO</li>
+<li><code>receiver_request_package</code> - Access BASE_RECEIVER_DATA to read the received package</li>
+<li><code>receiver_empty</code> - Access REG_SET to check wether the receiver FIFO is empty or not</li>
+<li><code>receiver_rdreq</code> - Access REG_SET to set the read_request flag with a pulse</li>
+<li><code>receiver_get_package</code> - Separates the package from <code>receiver_request_package</code> into data and mask</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../firmware/" class="btn btn-neutral" title="Firmware"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../firmware/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

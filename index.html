@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
@@ -61,47 +62,37 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#protocol-epc-gen2-uhf-rfid">Protocol EPC-GEN2 UHF RFID</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#state-of-the-art-review">State-of-the-Art Review</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
-        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#methodology">Methodology</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#tools">Tools</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cloning">Cloning</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#testing-runninng">Testing / Runninng</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#how-to-collaborate">How to collaborate</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hardware">Hardware</a>
+    <li class="toctree-l4"><a class="reference internal" href="#development-tools">Development Tools</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#firmware">Firmware</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#reader">READER</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#nios-ii">NIOS II</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#ip-core">IP CORE</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sender">SENDER</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#receiver">RECEIVER</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#register-bank">REGISTER BANK</a>
+    <li class="toctree-l4"><a class="reference internal" href="#design-tools">Design Tools</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#specification">Specification</a>
-    </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="getting_started/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="hardware/">Hardware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="software/">Software</a>
                     </li>
                 </ul>
       </div>
@@ -143,58 +134,81 @@
 <li><strong>Course:</strong> Computer Engineering</li>
 <li><strong>Semester:</strong> 8</li>
 <li><strong>Teacher:</strong> Rafael Corsi Ferrão</li>
-<li><strong>Contato:</strong> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#108;&#101;&#120;&#97;&#110;&#100;&#114;&#101;&#97;&#101;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#97;&#108;&#101;&#120;&#97;&#110;&#100;&#114;&#101;&#97;&#101;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#114;&#117;&#110;&#111;&#115;&#100;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#98;&#114;&#117;&#110;&#111;&#115;&#100;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#117;&#99;&#97;&#115;&#108;&#118;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#108;&#117;&#99;&#97;&#115;&#108;&#118;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#97;&#102;&#97;&#101;&#108;&#115;&#54;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#114;&#97;&#102;&#97;&#101;&#108;&#115;&#54;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#97;&#102;&#97;&#101;&#108;&#46;&#99;&#111;&#114;&#115;&#105;&#64;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#114;&#97;&#102;&#97;&#101;&#108;&#46;&#99;&#111;&#114;&#115;&#105;&#64;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+<li><strong>Contact:</strong><ul>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#108;&#101;&#120;&#97;&#110;&#100;&#114;&#101;&#97;&#101;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#97;&#108;&#101;&#120;&#97;&#110;&#100;&#114;&#101;&#97;&#101;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#114;&#117;&#110;&#111;&#115;&#100;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#98;&#114;&#117;&#110;&#111;&#115;&#100;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#117;&#99;&#97;&#115;&#108;&#118;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#108;&#117;&#99;&#97;&#115;&#108;&#118;&#49;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#97;&#102;&#97;&#101;&#108;&#115;&#54;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#114;&#97;&#102;&#97;&#101;&#108;&#115;&#54;&#64;&#97;&#108;&#46;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#97;&#102;&#97;&#101;&#108;&#46;&#99;&#111;&#114;&#115;&#105;&#64;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;">&#114;&#97;&#102;&#97;&#101;&#108;&#46;&#99;&#111;&#114;&#115;&#105;&#64;&#105;&#110;&#115;&#112;&#101;&#114;&#46;&#101;&#100;&#117;&#46;&#98;&#114;</a></li>
+</ul>
+</li>
 <li><strong>Year:</strong> 2021</li>
+<li><strong>Repository:</strong> <a href="https://github.com/pfeinsper/21b-indago-rfid-conformance-tester">https://github.com/pfeinsper/21b-indago-rfid-conformance-tester</a></li>
 </ul>
 <h2 id="about">About<a class="headerlink" href="#about" title="Permanent link">&para;</a></h2>
-<p>This project aims to develop an equipment capable of performing a series of tests on RFID TAGs, based on the communication protocol "EPC-GEN2 UHF RFID" <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. The project simplifies the development of  new TAGs that conform to the defined protocol, being able to assert wether the tag satisfies the requirements of said protocol, and also wether the TAG itself is working as intended.</p>
+<p>This project aims to develop an equipment capable of performing a series of tests on RFID TAGs, based on the communication protocol "EPC-GEN2 UHF RFID" <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. The project simplifies the development of new TAGs that conform to the defined protocol, being able to assert whether the tag satisfies the requirements of said protocol, and also whether the TAG itself is working as intended.</p>
 <h3 id="insper">Insper<a class="headerlink" href="#insper" title="Permanent link">&para;</a></h3>
 <p>This project is being developed by four computer engineering students at "Insper Instituto de Ensino e Pesquisa" <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, together with "Indago Services Inc." <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. As part of their completion of course work, the students must communicate with their selected company to identify a problem the company currently has and work together to find and implement a solution to it. For each group of students there is also a teaches that acts as a mentor and aids the group with matters of communication, organization, meetings, and project and report feedbacks.</p>
 <h3 id="indago-devices-inc">Indago Devices Inc.<a class="headerlink" href="#indago-devices-inc" title="Permanent link">&para;</a></h3>
-<p>Indago Devices Inc. is a startup that has its headquarters in the city of Birmingham Alabama, US, and works in the field of development and study of electronics. Despite having few employees, it seeks to innovate in the electronics market, specifically in the development of systems that communicate through RFID. They had already been communicating with Insper in the previous semester, and also another group of students who planned to do a similar project. This semester they decided to request a conformance tester to help develop RFID TAGs. One of the driving points of the project is that currently there is no similar sofware avaliable on open source for the RFID community, so it could impact not only their company, but also the worldwide RFID development community.</p>
+<p>Indago Devices Inc. is a startup that has its headquarters in the city of Birmingham Alabama, US, and works in the field of development and study of electronics. Despite having few employees, it seeks to innovate in the electronics market, specifically in the development of systems that communicate through RFID. They had already been communicating with Insper in the previous semester, and another group of students who planned to do a similar project. This semester they decided to request a conformance tester to help develop RFID TAGs. One of the driving points of the project is that currently there is no similar software available on open source for the RFID community, so it could impact not only their company, but also the worldwide RFID development community.</p>
 <h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
-<p>The main objetive of this project is to develop and assemble a conformance tester for RFID TAGs where a microcontroller will be implemented and an IP Core for communication with the DUT (device under testing). This device then shall be able to run a series of tests as a READER interacting with a TAG through the EPC-GEN2 protocol, analysing if the TAG works as intended and complies with the requirements of the protocol.</p>
-<p>The tests will be implemented using C, allowing for a large amount of tests to be made that target different aspects of the TAG's process, independently evaluating most of them. Also, it will be possible to customize the tests or develop new ones should the user need to do so.</p>
-<p>This project does not make use of RFID communication, nor does it intend to test wether the TAG is able to communicate through it. Given the compleity of communicating through radio waves, the group and the teacher agreed to not cover those points in this project. Therefore, the device, TAG and computer shall be connected by cables. </p>
+<p>The main objective of this project is to develop and assemble a conformance tester for RFID TAGs where a microcontroller will be implemented and an IP-Rfid for communication with the DUT (device under testing). This device then shall be able to run a series of tests as a READER interacting with a TAG through the EPC-GEN2 protocol, analyzing if the TAG works as intended and complies with the requirements of the protocol.</p>
+<p>The tests will be implemented using C, allowing for a large number of tests to be made that target different aspects of the TAG's process, independently evaluating most of them. Also, it will be possible to customize the tests or develop new ones should the user need to do so.</p>
+<p>This project does not make use of RFID communication, nor does it intend to test whether the TAG is able to communicate through it. Given the complexity of communicating through radio waves, the group and the teacher agreed to not cover those points in this project. Therefore, the device, TAG and computer shall be connected by cables.</p>
 <h3 id="protocol-epc-gen2-uhf-rfid">Protocol EPC-GEN2 UHF RFID<a class="headerlink" href="#protocol-epc-gen2-uhf-rfid" title="Permanent link">&para;</a></h3>
 <p>Documentation avaliable on: <a href="https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf">https://www.gs1.org/sites/default/files/docs/epc/Gen2_Protocol_Standard.pdf</a></p>
-<p>The main purpose of this protocol is to allow two pieces of hardware, obtained independently, but conforming to the protocol, to communicate flawlessly. To achieve this, it specifies how physical and logial interactions should take place, as well as the possible commands between READER and TAG.</p>
-<p>There are rules defined for both READER and TAG, however, due to the nature of this project, we will focus only on the TAG, as it is the focus of the tests devised.</p>
-<p>To claim compliance with the protocol, a TAG must meet all required specifications, having implementd all mandatory commands, be able to modulate a response signal after receiving a command from a READER, and comply with all government radio regulations. Optionally, it is allowed to implement any number of non-mandatory commands defined in this protocol and any other private commands that do not conflict with any of the mandatory ones. Finally, the TAG must not require a READER to be able to process any non-mandatory comand for this protocol, and is not allowed to modulate a response signal unless it has been commanded to do so by a READER using the commands present in this protocol.</p>
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<h3 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
-<p>To be able to use the Conformance Tester for TAGs EPC-GEN2 UHF RFID, you'll need the following tools:</p>
+<p>The main purpose of the protocol is to allow two pieces of hardware, obtained independently, but conforming to the protocol, to communicate flawlessly. To achieve this, it specifies how physical and logical interactions should take place, as well as the possible commands between READER and TAG.</p>
+<p>To claim compliance with the protocol, a READER must meet all required specifications, having implemented all mandatory commands, be able to encode, send, receive, and decode data so that it can communicate with a TAG, as well as comply with all local government radio regulations. Optionally, it is allowed to implement any number of optional commands defined in the protocol and any other private commands that do not conflict with any of the mandatory ones. Finally, a READER must not require a TAG to be able to process any command that is not specified as mandatory in the protocol.</p>
+<p>To claim compliance with the protocol, a TAG must meet all required specifications, having implemented all mandatory commands, be able to modulate a response signal after receiving a command from a READER, and comply with all local government radio regulations. Optionally, it is allowed to implement any number of optional commands defined in the protocol and any other private commands that do not conflict with any of the mandatory ones. Finally, the TAG must not require a READER to be able to process any optional command from the protocol and is not allowed to modulate a response signal unless it has been commanded to do so by a READER using the commands present in the protocol.</p>
+<p>The EPC-GEN2 UHF RFID allow four types of commands in its documentation: 1- mandatory; 2- optional; 3- proprietary; 4- custom. All commands defined in the protocol are either mandatory or optional. Proprietary and custom commands are manufacturer-defined.
+Mandatory commands shall be supported by all TAGs and READERs that claim compliance to the protocol.
+Optional commands may or may not be supported by TAGs or READERs. If any implements optional commands, then it shall do so in the manner specified in the protocol.
+Proprietary commands may be enabled in conformance with the protocol but are not specified in it. All proprietary commands shall be capable of being permanently disabled. Proprietary commands are intended for manufacturing purposes and shall not be used in field-deployed RFID systems.
+Custom commands may be enabled in conformance with the protocol but are not specified in it. A READER shall issue a custom command only after singulating a TAG and reading (or having prior knowledge of) the TAG manufacturer’s identification in the TAG’s TID memory. A READER shall use a custom command only in accordance with the specifications of the TAG manufacturer identified in the TID. A custom command shall not solely duplicate the functionality of any mandatory or optional command defined in the protocol by a different method.</p>
+<p><strong>Mandatory Commands</strong></p>
 <ul>
-<li><strong>Hardware:</strong> DE10-Standard e acessórios</li>
-<li><strong>Softwares:</strong> Quartus 18.01</li>
-<li><strong>Documentos:</strong> <a href="https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual">DE10-Standard_User_manual.pdf</a></li>
+<li><code>Select</code> selects the population of TAGs that will be communicated with. The set can be defined by intersection, union or negation of TAGs;</li>
+<li><code>Query / Query Adjust / Query Rep</code> starts a communication round between the TAGs and READER, deciding which TAG will participate in the round and sending the Q value for such. <code>Query Adjust</code> can adjust que Q value for the TAG. <code>Query Rep</code> decreases the value of Q stored within the TAG’s memory by 1;  </li>
+<li><code>ACK / NAK</code> is sent to the TAG with the same value sent by the TAG when returning to the <code>Query</code> command. It signifies the READER recognized the TAG’s response. <code>NAK</code> changes the state of the TAGs involved in the round to <code>arbitrate</code>, in which they remain as stand-by;</li>
+<li><code>Req_RN</code> requests a new random number (RN16), sending the previous one as authentication;</li>
+<li><code>Read / Write</code> requests the reading of information within a specified address in the TAG’s memory bank. <code>Write</code> sends information to be written in that address instead;</li>
+<li><code>Kill / Lock</code> sets the tag as unusable. It is a way to end the communication so that the TAG no longer responds. <code>Lock</code> can lock or unlock portions of the TAG’s memory bank for <code>Write</code> access.</li>
 </ul>
-<h3 id="cloning">Cloning<a class="headerlink" href="#cloning" title="Permanent link">&para;</a></h3>
-<h3 id="testing-runninng">Testing / Runninng<a class="headerlink" href="#testing-runninng" title="Permanent link">&para;</a></h3>
-<h3 id="how-to-collaborate">How to collaborate<a class="headerlink" href="#how-to-collaborate" title="Permanent link">&para;</a></h3>
-<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<p>This Conformance Tester for TAGs EPC-GEN2 UHF RFID is an open source project. We will specify below all the hardware that we used as the foundation for this project, specifications on how it all comes together, as well as a link to our firmware repository on GitHub.</p>
-<h3 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h3>
-<p>For this project, the chosen solution for implementing the conformance tester was to develop a dedicated hardware in FPGA <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>. The chosen product was the DE10-Standard produced by Terasic as well as a PFGA Cyclone V from Intel. Our teacher had ample experience working with this specific model, and it also perfectly fits the requirements need to implement the chosen solution. This is because, through a tool called "platform designer", it is able to edit its configuration on demand, allowing great flexibility when needed.</p>
-<p>The proposed solution makes use of Intel's solution development ecosystem, providing flexibility in the use of a soft processor, enabling the integration of peripherals called IP Cores to its architecture, as well as allowing the creation of new instructions implmented in the hardware. For more information on these modifications, see the document "Nios II Custom Instruction User Guide" <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.</p>
-<h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
-<p>Below is an in depth explanation of every piece of this project, copntaining its purpose and how it was implemented.</p>
-<h4 id="reader">READER<a class="headerlink" href="#reader" title="Permanent link">&para;</a></h4>
-<p>The READER, as shown in the diagram below, is the toplevel of our project, which contains the three main components. Here we will give an overview of each component, and a in depth analysis is present in the sections below.</p>
-<p><img alt="" src="reader.png" /></p>
-<p>The first one is the NIOS II soft processor, where we programmed the tests that will be run on the TAG. Therefore, its responsible for generating the commands for communicating with the TAG, as well as interpreting the responses it receives, in order to assert wether the TAG passes or fails each test.</p>
-<p>The second component is the IP Core, developed in VHDL, and is responsible for encoding and sending messages to the TAG, as well as decoding any responses and passing the through to the processor. Those two tasks have been separated into the sender and the receiver respectively.</p>
-<p>The last one is the Avalon Interface, is the connection between the NIOS II and the IP Core, where the commands, generated in the programming languace C, will be passed on to the VHDL sender, and responses will take the opposite path, going from the receiver to the processor.</p>
-<h4 id="nios-ii">NIOS II<a class="headerlink" href="#nios-ii" title="Permanent link">&para;</a></h4>
-<h4 id="ip-core">IP CORE<a class="headerlink" href="#ip-core" title="Permanent link">&para;</a></h4>
-<h4 id="sender">SENDER<a class="headerlink" href="#sender" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="encoder.png" /></p>
-<h4 id="receiver">RECEIVER<a class="headerlink" href="#receiver" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="receiver.png" />
-<img alt="" src="decoder.png" /></p>
-<h4 id="register-bank">REGISTER BANK<a class="headerlink" href="#register-bank" title="Permanent link">&para;</a></h4>
-<h3 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h3>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p><strong>Handshake</strong></p>
+<p>The diagram below can be found in annex E of the EPC-GEN2 documentation and represents the Hand-shake between READER and TAG.</p>
+<p><img alt="" src="Handshake.png" /></p>
+<p>The READER sends a <code>Query</code> (1), to start an inventory round with the TAG. Upon recognizing the inventory round, the TAG checks whether to respond, and responds with a 16-bit random number <code>RN16</code> (2). To establish the communication as successful, the reader sends the <code>ACK</code> (3) containing the same RN16. Having received and validated the confirmation, the TAG responds with <code>PC/XPC, EPC</code> (4). The reader then send a <code>Req_RN</code> (5), again with the old RN16, requesting a new RN16 to continue the communication. If the TAG again validates the RN16, it responds with the <code>handle</code> (6), a new RN16. Once the READER receives the <code>handle</code>, the handshake is effectively over and the <code>handle</code> will be used as authentication for all communication from that point forwards. Every <code>command</code> (7) will be sent together with the <code>handle</code> and TAG will always verify the <code>handle</code> before responding (8). </p>
+<h3 id="state-of-the-art-review">State-of-the-Art Review<a class="headerlink" href="#state-of-the-art-review" title="Permanent link">&para;</a></h3>
+<p>The market currently has very diversified solutions in relation to RFID technology. Among the options currently available, proprietary equipment and products are the main competitors, as they are developed by well-established companies. For example, CISC semiconductor <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>, specializing in RFID and NFC services, and working both in the production of laboratory equipment and product testers for the market. Another company that is worth mentioning is HID global <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>, which has several solutions for RFID tags end operates worldwide under sales and distribution of these products.</p>
+<p>There are, however, other solutions present in the market, such as open-source solutions. As proprietary products are expensive and not easily customizable, some users choose to develop their own version of those products, leaving them open for others to use and improve. The use of open source helps to develop a highly customizable product, as every user can download the program and make their own changes to better suit their need. Another benefit of open source is the collaboration aspect, where users around the world can suggest changes or improvements, as well as implement them to improve the overall product.</p>
+<p>An example of an open-source product is the WISP5 <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> tag, initially developed at the University of Washington <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>. The WISP is a battery-free platform with a software-defined implementation of a passive RFID tag, that can communicate with commercial-off-the-shelf RFID readers and is powered by the carrier signal emitted by the reader. It is also built from low-cost components commonly found in hardware stores, allowing WISP users to fabricate their own platforms if desired.</p>
+<p>Another open-source product is the S.U.R.F.E.R. (Software-defined UHF RFID Flexible Economical Reader) <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>, an RFID reader. It operates with the same technology as the WISP5 tag, enabling readings up to 60 feet (20 meters) away. Due to it being software-defined, the reader is highly versatile, as the user can input the specifications of the desired tag into the software. It also has a relatively simple structure to find, which result in a low-cost product.</p>
+<p>Open-source products bring a series of benefits to the users, such as lesser hardware and software costs, due to the products being intentionally built to be easily accessible; simple licensing management because they often are free to use and impose no restrictions at all; abundant support, as there are many companies that develop open-source products and offer both free and varied levels of paid support.</p>
+<p>Given these advantages, Indago Devices opted for a completely open-source product as well. In a meeting with our mentor Wallace Shepherd Pitts, he mentioned he had previously researched and studied some of the options currently available, but nothing had fit with what he had in mind, because the products offered little room for customization regarding the tests made to the tag.</p>
+<p>The direct competitors of our project would be the previously mentioned products, which dominate the current market. However, as we are aiming for the open-source architecture, it may attract users interested in a more accessible or customizable product.</p>
+<p>Another point mentioned by our mentor is that he also intends to use the project as study material for students at the University of North Carolina <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>, which consequently opens up possibilities for further expansion of the product.</p>
+<h3 id="methodology">Methodology<a class="headerlink" href="#methodology" title="Permanent link">&para;</a></h3>
+<p>During the first weeks of the project, the group settled on definitions and agreements on what would be the methodology used throughout the semester, as well as the different tools and softwares that would be used.</p>
+<p>The platform GitHub was chosen as the method for sharing the code between the group members and the teacher, as it can store many important files other than code files, such as diagrams and images the group would produce for the project. Another feature often used by the group is the creation of issues, which can help define and order the group’s next tasks and assign members to complete them.</p>
+<p>The day-to-day communication between the members were done through Discord, and meetings with Indago’s representative or the PFE’s coordinators though Microsoft Teams. As meetings with a member of the company were infrequent, taking place every fortnight, the group usually kept a list of questions and issues about the EPC-GEN2 protocol and the project in general so that the representative could provide some support.</p>
+<p>Documents and reports were produced and stored in Google Drive, so that multiple members could work on them simultaneously, and also be accessed by the teacher to provide insights and feedback. It also served as another backup storage to the Github repository, in case any problems occurred.</p>
+<p>The programming languages VHDL and C were used throughout the project, through the softwares Quartus and Eclipse, which support simulations and tests that aid in the development process. As the client specified that he wanted the project to be open-source, all code, reports and images relevant to this will also be available on the project’s public GitHub repository.</p>
+<p>As the project consists of the creation of a conformance tester for the EPC-GEN2 UHF RFID protocol, its documentation was widely used, researched, and discussed by all members of the group during the project, focusing mainly on the communication sections between the READER and TAG, as well as encoding data, and mandatory commands for protocol standards.</p>
+<p>Since the project was open-source and available on GitHub, it was decided that the group would also provide a documentation to the whole project, which was later decided would be available through GitHub Pages. Inside, the group would give an in-depth description of all components, and also a tutorial on how to clone, run, utilize and modify this project.</p>
+<h3 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
+<h4 id="development-tools">Development Tools<a class="headerlink" href="#development-tools" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Intel® Quartus® Prime FPGA Design Software</li>
+<li>Eclipse IDE 2021‑09</li>
+<li>Intel® FPGA Simulation - ModelSim</li>
+<li>Github.com</li>
+</ul>
+<h4 id="design-tools">Design Tools<a class="headerlink" href="#design-tools" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Google Drive</li>
+<li>Excalidraw.com</li>
+<li>Discord</li>
+</ul>
 <div class="footnote">
 <hr />
 <ol>
@@ -214,14 +228,34 @@ Accessed on: 16/08/2021.&#160;<a class="footnote-backref" href="#fnref:2" title=
 Accessed on: 16/08/2021.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>FPGA Intel.
-<a href="https://www.intel.com.br/content/www/br/pt/products/programmable.html">https://www.intel.com.br/content/www/br/pt/products/programmable.html</a>
-Accessed on: 23/08/2021&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Cisc Semiconductors.
+<a href="https://www.cisc.at/">https://www.cisc.at/</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Nios II Custom Instruction User Guide.
-<a href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf">https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_nios2_custom_instruction.pdf</a>
-Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>HID Global.
+<a href="https://www.hidglobal.com/products/rfid-tags">https://www.hidglobal.com/products/rfid-tags</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>WISP5 Wiki.
+<a href="https://sites.google.com/uw.edu/WISP-wiki/home">https://sites.google.com/uw.edu/WISP-wiki/home</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>University of Washington.
+<a href="https://www.washington.edu/">https://www.washington.edu/</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>S.U.R.F.E.R. reader.
+<a href="https://openrfidreader.net/">https://openrfidreader.net/</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>University of North Carolina.
+<a href="https://www.uncg.edu/">https://www.uncg.edu/</a>
+Accessed on: 20/09/2021.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -229,6 +263,13 @@ Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting_started/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>
@@ -255,6 +296,8 @@ Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="
     
     
     
+      <span><a href="getting_started/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script>var base_url = '.';</script>
@@ -272,5 +315,5 @@ Acessed on: 23/08/2021.&#160;<a class="footnote-backref" href="#fnref:5" title="
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2021-11-12 02:00:27.777048+00:00
+Build Date UTC : 2021-11-27 12:57:04.457553+00:00
 -->
